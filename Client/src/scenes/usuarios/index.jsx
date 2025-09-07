@@ -7,28 +7,20 @@ import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
 
-const Team = () => {
+const Usuarios = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: "id", headerName: "ID" },
+    { field: "idusuario", headerName: "ID" },
     {
-      field: "name",
-      headerName: "Name",
+      field: "nombre",
+      headerName: "Nombre",
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      headerAlign: "left",
-      align: "left",
-    },
-    {
-      field: "phone",
-      headerName: "Phone Number",
-      flex: 1,
+      field: "apellido",
+      headerName: "Apellidos",
     },
     {
       field: "email",
@@ -36,8 +28,13 @@ const Team = () => {
       flex: 1,
     },
     {
-      field: "accessLevel",
-      headerName: "Access Level",
+      field: "password",
+      headerName: "Password",
+      flex: 1,
+    },
+    {
+      field: "acciones",
+      headerName: "Acciones",
       flex: 1,
       renderCell: ({ row: { access } }) => {
         return (
@@ -70,7 +67,7 @@ const Team = () => {
 
   return (
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Team Members" />
+      <Header title="Usuarios" subtitle="Gestion de Usuarios" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -106,4 +103,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default Usuarios;
