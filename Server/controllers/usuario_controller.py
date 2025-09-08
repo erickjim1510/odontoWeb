@@ -43,7 +43,19 @@ class UsuarioController:
     @staticmethod
     def crear_usuario(data):
         try:
-            campos_requeridos = ['nombre', 'apellido', 'email', 'password']
+            campos_requeridos = [
+            "id_rol",
+            "id_estado",
+            "primer_nombre",
+            "segundo_nombre",
+            "apellido_paterno",
+            "apellido_materno",
+            "fecha_nacimiento",
+            "nombre_usuario",
+            "contrasena_hash",
+            "telefono",
+            "email",
+            "fecha_registro"]
             for campo in campos_requeridos:
                 if not data.get(campo):
                     return {
@@ -51,19 +63,26 @@ class UsuarioController:
                         'mensaje': f'El campo {campo} es requerido'
                     }
             
-            usuario_existente = Usuario.query.filter_by(email=data['email']).first()
+            usuario_existente = Usuario.query.filter_by(nombre_usuario=data['nombre_usuario']).first()
             if usuario_existente:
                 return {
                     'success': False,
-                    'mensaje': 'El email ya está registrado'
+                    'mensaje': 'El nombre de usuario ya está registrado'
                 }
             
             nuevo_usuario = Usuario(
-                nombre=data['nombre'],
-                apellido=data['apellido'],
-                email=data['email'],
-                password=data['password'],
-                idestatus=data.get('idestatus', 0)
+                id_rol=data["id_rol"],
+                id_estado=data["id_estado"],
+                primer_nombre=data["primer_nombre"],
+                segundo_nombre=data["segundo_nombre"],
+                apellido_paterno=data["apellido_paterno"],
+                apellido_materno=data["apellido_materno"],
+                fecha_nacimiento=data["fecha_nacimiento"],
+                nombre_usuario=data["nombre_usuario"],
+                contrasena_hash=data["contrasena_hash"],
+                telefono=data["telefono"],
+                email=data["email"],
+                fecha_registro=data["fecha_registro"],
             )
             
             db.session.add(nuevo_usuario)
