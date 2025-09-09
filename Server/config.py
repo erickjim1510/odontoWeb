@@ -5,3 +5,6 @@ class Config:
         "DATABASE_URL", "mysql+pymysql://root:Sagas123@localhost:3307/odonto"
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
+    

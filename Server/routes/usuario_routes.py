@@ -3,14 +3,14 @@ from controllers.usuario_controller import UsuarioController
 
 usuario_bp = Blueprint('usuario', __name__)
 
-@usuario_bp.route('/api/usuarios', methods=['GET'])
+@usuario_bp.route('/usuarios', methods=['GET'])
 def obtener_usuarios():
     """Este obtiene todos los usuarios"""
     resultado = UsuarioController.obtener_todos()
     status_code = 200 if resultado['success'] else 500
     return jsonify(resultado), status_code
 
-@usuario_bp.route('/api/usuarios/<int:idusuario>', methods=['GET'])
+@usuario_bp.route('/usuarios/<int:idusuario>', methods=['GET'])
 def obtener_usuario(idusuario):
     """Obtiene un usuario por ID"""
     #CHECAR SI ES CORRECTO PASARLO POR PAARAMETROS
@@ -18,7 +18,7 @@ def obtener_usuario(idusuario):
     status_code = 200 if resultado['success'] else 404
     return jsonify(resultado), status_code
 
-@usuario_bp.route('/api/usuarios', methods=['POST'])
+@usuario_bp.route('/usuarios', methods=['POST'])
 def crear_usuario():
     """Crea nuevo usuario"""
     data = request.get_json()
@@ -29,7 +29,7 @@ def crear_usuario():
     status_code = 201 if resultado['success'] else 400
     return jsonify(resultado), status_code
 
-@usuario_bp.route('/api/usuarios/<int:idusuario>', methods=['PUT'])
+@usuario_bp.route('/usuarios/<int:idusuario>', methods=['PUT'])
 def actualizar_usuario(idusuario):
     """Actualiza usuario"""
     data = request.get_json()
@@ -40,14 +40,14 @@ def actualizar_usuario(idusuario):
     status_code = 200 if resultado['success'] else 400
     return jsonify(resultado), status_code
 
-@usuario_bp.route('/api/usuarios/<int:idusuario>', methods=['DELETE'])
+@usuario_bp.route('/usuarios/<int:idusuario>', methods=['DELETE'])
 def eliminar_usuario(idusuario):
     """Elimina usuario"""
     resultado = UsuarioController.eliminar_usuario(idusuario)
     status_code = 200 if resultado['success'] else 404
     return jsonify(resultado), status_code
 
-@usuario_bp.route('/api/usuarios/login', methods=['POST'])
+@usuario_bp.route('/usuarios/login', methods=['POST'])
 def login():
     """Login de usuario"""
     data = request.get_json()
@@ -63,3 +63,4 @@ def login():
     resultado = UsuarioController.login(email, password)
     status_code = 200 if resultado['success'] else 401
     return jsonify(resultado), status_code
+
