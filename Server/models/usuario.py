@@ -39,5 +39,5 @@ class Usuario(db.Model):
         }
     
     def verificar_password(self, password):
-        return self.password == password
+        return self.contrasena_hash == password
     
