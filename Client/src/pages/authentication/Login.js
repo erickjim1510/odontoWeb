@@ -22,7 +22,7 @@ const Login = () => {
         e.preventDefault();
 
         await api
-            .post("/api/usuario/obtener", { Usuario: email, Password: password })
+            .post("/api/usuarios/login", { Usuario: email, Password: password })
             .then((r) => {
                 if (r && r.data) {
                     authlogin(

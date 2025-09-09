@@ -6,4 +6,4 @@ cd server
 
 venv\Scripts\activate
 
-python main.py
+python app.py

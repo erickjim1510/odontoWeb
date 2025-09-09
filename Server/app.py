@@ -8,10 +8,13 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     
-    CORS(app)
+    # CORS SOLO para tu frontend
+    CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
     db.init_app(app)
     
     app.register_blueprint(usuario_bp)
+    
+    return app  
 
 if __name__ == "__main__":
     app = create_app()
