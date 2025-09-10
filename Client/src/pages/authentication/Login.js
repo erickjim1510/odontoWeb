@@ -9,7 +9,7 @@ import api from '../../services/api.js';
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [contrasena_hash, setContrasena_hash] = useState('');
     const { authlogin } = useContext(AuthContext);
     const [validationErrors, setValidationErrors] = useState({});
 
@@ -22,20 +22,19 @@ const Login = () => {
         e.preventDefault();
 
         await api
-            .post("/api/usuarios/login", { Usuario: email, Password: password })
+            .post("/usuarios/login", { Usuario: email, Password: contrasena_hash })
             .then((r) => {
                 if (r && r.data) {
-                    authlogin(
-                        r.data.Email,
-                        r.data.Password,
-                        r.data.Idclinica,
-                        r.data.Idusuario,
-                        r.data.Idperfil,
-                        r.data.Clinica
-                    );
-                    sessionStorage.setItem("token", r.data.Token);
+                    console.log('Datos recibidos del servidor:', r.data);
+                    
+                    authlogin(r.data);
+                    
+                    if (r.data.token) {
+                        sessionStorage.setItem("token", r.data.token);
+                    }
+                    
                     navigate('/dashboard');
-                    window.location.reload(false);
+                     window.location.reload(false);
                 } else {
                     setValidationErrors({ message: "Error de conexión con el Servidor" });
                 }
@@ -57,8 +56,6 @@ const Login = () => {
                 <div className="Auth-form-content">
                     <div className="text-center mb-4">
                         <img src={logo} alt="logo" className="login-logo" />
-
-
                     </div>
 
                     {validationErrors.message && (
@@ -72,7 +69,7 @@ const Login = () => {
                         <input
                             id="email"
                             name="email"
-                            type="email"
+                            type="email"  
                             className="form-control mt-1"
                             placeholder="Ingresa Correo"
                             value={email}
@@ -83,13 +80,13 @@ const Login = () => {
                     <div className="form-group mt-3">
                         <label>Contraseña:</label>
                         <input
-                            id="password"
-                            name="password"
-                            type="password"
+                            id="contrasena_hash"
+                            name="contrasena_hash"
+                            type="password"  
                             className="form-control mt-1"
                             placeholder="Ingresa Contraseña"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={contrasena_hash}
+                            onChange={(e) => setContrasena_hash(e.target.value)}
                         />
                     </div>
 
