@@ -54,13 +54,16 @@ def login():
     if not data:
         return jsonify({'success': False, 'mensaje': 'No se enviaron datos'}), 400
     
-    email = data.get('email') or data.get('Usuario')  
-    password = data.get('password') or data.get('Password') 
+    email = data.get('Usuario')
+    contrasena_hash = data.get('Password')
     
-    if not email or not password:
-        return jsonify({'success': False, 'mensaje': 'Email y contraseña son requeridos'}), 400
+    if not email or not contrasena_hash:
+        return jsonify({'success': False, 'mensaje': 'Email y Contraseña son requeridos'}), 400
     
-    resultado = UsuarioController.login(email, password)
-    status_code = 200 if resultado['success'] else 401
-    return jsonify(resultado), status_code
+    resultado = UsuarioController.login(email, contrasena_hash)
+    
+    if resultado['success']:
+        return jsonify(resultado['data']), 200
+    else:
+        return jsonify({'mensaje': resultado['mensaje']}), 401
 

@@ -14,7 +14,7 @@ def create_app():
     app.config.from_object(Config)
     
     # CORS SOLO para tu frontend
-    CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+    CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
     db.init_app(app)
     
     app.register_blueprint(estado_bp)

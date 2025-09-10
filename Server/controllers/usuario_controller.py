@@ -172,7 +172,7 @@ class UsuarioController:
             }
     
     @staticmethod
-    def login(email, password):
+    def login(email, contrasena_hash):
         try:
             usuario = Usuario.query.filter_by(email=email).first()
             
@@ -182,7 +182,7 @@ class UsuarioController:
                     'mensaje': 'Usuario no encontrado'
                 }
             
-            if not usuario.verificar_password(password):
+            if not usuario.verificar_password(contrasena_hash):
                 return {
                     'success': False,
                     'mensaje': 'Contraseña incorrecta'

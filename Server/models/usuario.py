@@ -38,6 +38,6 @@ class Usuario(db.Model):
             "fecha_registro": self.fecha_registro.isoformat() if self.fecha_registro else None
         }
     
-    def verificar_password(self, password):
-        return self.contrasena_hash == password
+    def verificar_password(self, contrasena_hash):
+        return self.contrasena_hash == contrasena_hash
     
