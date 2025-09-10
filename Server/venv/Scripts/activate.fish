@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV 'C:\Users\Asus TUF\Desktop\Proyecto IS\odontoWeb\Server\venv'
+set -gx VIRTUAL_ENV 'C:\Users\Asus TUF\odontoweb\Server\venv'
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"Scripts $PATH
