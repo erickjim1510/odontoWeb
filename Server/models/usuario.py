@@ -18,7 +18,6 @@ class Usuario(db.Model):
     telefono = db.Column(db.String(15))
     email = db.Column(db.String(30))
     fecha_registro = db.Column(db.Date)
-
     
 
     def to_dict(self):

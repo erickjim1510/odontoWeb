@@ -8,3 +8,7 @@ venv/
 *.sqlite3
 *.log
 .env
+
+venv/
+*.pyc
+__pycache__/
